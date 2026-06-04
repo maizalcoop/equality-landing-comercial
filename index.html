@@ -200,10 +200,10 @@ body::after {
   width:100%;
   max-width:1200px;
   margin:0 auto;
-  padding: clamp(100px,14vh,160px) clamp(20px,5vw,64px) clamp(48px,7vh,80px);
+  padding: clamp(80px,10vh,140px) clamp(20px,5vw,64px) clamp(48px,7vh,80px);
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
+  justify-content:center;
   align-self:center;
 }
 .hero-bottom { display:flex; flex-direction:column; max-width:800px; }
@@ -222,8 +222,7 @@ body::after {
 
 /* ── TICKER ── */
 .ticker-wrap { overflow:hidden; padding:14px 0; background:rgba(167,221,0,0.05); border-top:1px solid var(--lime-border); border-bottom:1px solid var(--lime-border); position:relative; }
-.ticker-pause { position:absolute; right:16px; top:50%; transform:translateY(-50%); z-index:2; background:rgba(167,221,0,0.08); border:1px solid rgba(167,221,0,0.2); color:var(--muted-2); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s, color 0.2s; }
-.ticker-pause:hover, .ticker-pause[aria-pressed="true"] { background:rgba(167,221,0,0.18); color:var(--lime); }
+.ticker-pause { display:none; }
 .ticker-track { display:flex; width:max-content; animation:tick 30s linear infinite; }
 .ticker-track:hover { animation-play-state:paused; }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
@@ -551,6 +550,13 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
 .footer-li:hover { border-color:var(--lime-border); color:var(--lime); background:var(--lime-subtle); }
 .footer-li svg { width:14px; height:14px; }
 
+/* ── LARGE SCREENS (iMac 27'' y similares) ── */
+@media (min-width: 1800px) {
+  .hero-title { font-size: clamp(68px,4.4vw,84px); }
+  .hero-subtitle { font-size: clamp(20px,1.3vw,26px); max-width:640px; }
+  .hero-lead { font-size: clamp(15px,0.88vw,17px); max-width:720px; }
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .nav-links,.nav-cta { display:none }
@@ -682,26 +688,44 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
   <div class="ticker-track" id="tickerTrack">
     <div class="ticker-item">Bancos <b>·</b></div>
     <div class="ticker-item">Mutuales <b>·</b></div>
-    <div class="ticker-item">Cooperativas <b>·</b></div>
+    <div class="ticker-item">Cooperativas de Crédito <b>·</b></div>
     <div class="ticker-item">Fintech <b>·</b></div>
     <div class="ticker-item">Core Bancario <b>·</b></div>
     <div class="ticker-item">Compliance BCRA <b>·</b></div>
-    <div class="ticker-item">Migración de plataformas <b>·</b></div>
+    <div class="ticker-item">Migración de Plataformas <b>·</b></div>
     <div class="ticker-item">Reporting Regulatorio <b>·</b></div>
     <div class="ticker-item">Integraciones API <b>·</b></div>
-    <div class="ticker-item">Modernización progresiva <b>·</b></div>
+    <div class="ticker-item">Modernización Progresiva <b>·</b></div>
     <div class="ticker-item">Continuidad Operativa <b>·</b></div>
+    <div class="ticker-item">Sistemas Legados <b>·</b></div>
+    <div class="ticker-item">Gestión de Préstamos <b>·</b></div>
+    <div class="ticker-item">Auditoría y Seguridad <b>·</b></div>
+    <div class="ticker-item">Consolidación Financiera <b>·</b></div>
+    <div class="ticker-item">Procesos Batch <b>·</b></div>
+    <div class="ticker-item">Onboarding Digital <b>·</b></div>
+    <div class="ticker-item">Scoring Crediticio <b>·</b></div>
+    <div class="ticker-item">Pagos y Transferencias <b>·</b></div>
+    <div class="ticker-item">Riesgo Operativo <b>·</b></div>
     <div class="ticker-item">Bancos <b>·</b></div>
     <div class="ticker-item">Mutuales <b>·</b></div>
-    <div class="ticker-item">Cooperativas <b>·</b></div>
+    <div class="ticker-item">Cooperativas de Crédito <b>·</b></div>
     <div class="ticker-item">Fintech <b>·</b></div>
     <div class="ticker-item">Core Bancario <b>·</b></div>
     <div class="ticker-item">Compliance BCRA <b>·</b></div>
-    <div class="ticker-item">Migración de plataformas <b>·</b></div>
+    <div class="ticker-item">Migración de Plataformas <b>·</b></div>
     <div class="ticker-item">Reporting Regulatorio <b>·</b></div>
     <div class="ticker-item">Integraciones API <b>·</b></div>
-    <div class="ticker-item">Modernización progresiva <b>·</b></div>
+    <div class="ticker-item">Modernización Progresiva <b>·</b></div>
     <div class="ticker-item">Continuidad Operativa <b>·</b></div>
+    <div class="ticker-item">Sistemas Legados <b>·</b></div>
+    <div class="ticker-item">Gestión de Préstamos <b>·</b></div>
+    <div class="ticker-item">Auditoría y Seguridad <b>·</b></div>
+    <div class="ticker-item">Consolidación Financiera <b>·</b></div>
+    <div class="ticker-item">Procesos Batch <b>·</b></div>
+    <div class="ticker-item">Onboarding Digital <b>·</b></div>
+    <div class="ticker-item">Scoring Crediticio <b>·</b></div>
+    <div class="ticker-item">Pagos y Transferencias <b>·</b></div>
+    <div class="ticker-item">Riesgo Operativo <b>·</b></div>
   </div>
 </div>
 
@@ -1185,22 +1209,53 @@ gsap.from('.divider-200k-phrase',{opacity:0,x:30,duration:0.9,ease:'power3.out',
   const mm = gsap.matchMedia();
 
   mm.add('(min-width: 601px)', () => {
-    const getAmt = () => -(grid.scrollWidth - outer.clientWidth);
+    let tween = null;
+    let resizeTimer = null;
 
-    const tween = gsap.to(grid, {
-      x: getAmt,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        pin: true,
-        scrub: 1,
-        start: 'top 58px',
-        end: () => '+=' + Math.abs(getAmt()),
-        invalidateOnRefresh: true,
-        anticipatePin: 1,
+    function init() {
+      if (tween) { tween.kill(); tween = null; }
+
+      const scrollAmt = grid.scrollWidth - outer.clientWidth;
+
+      if (scrollAmt <= 0) {
+        // todas las cards entran: centrar sin scroll
+        grid.style.justifyContent = 'center';
+        gsap.set(grid, { clearProps: 'x' });
+        return;
       }
-    });
-    return () => tween.kill();
+
+      grid.style.justifyContent = '';
+
+      tween = gsap.to(grid, {
+        x: -scrollAmt,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          scrub: 1,
+          start: 'top 58px',
+          end: '+=' + scrollAmt,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        }
+      });
+    }
+
+    init();
+
+    const onResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { ScrollTrigger.refresh(); init(); }, 250);
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+
+    return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', onResize);
+      if (tween) tween.kill();
+      grid.style.justifyContent = '';
+      gsap.set(grid, { clearProps: 'x' });
+    };
   });
 })();
 

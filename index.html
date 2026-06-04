@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Equality · Tecnología financiera con comprensión del negocio</title>
 <meta name="description" content="Cooperativa tecnológica especializada en el sector financiero. Modernizamos sistemas core bancario, integramos plataformas y desarrollamos soluciones regulatorias para bancos, mutuales, cooperativas y fintech.">
 <link rel="icon" href="img/favicon.png" type="image/png">
@@ -136,12 +136,14 @@ body::after {
 .nav {
   position: fixed; top:0; left:0; right:0; z-index:1000;
   padding: 22px clamp(20px,5vw,64px);
+  padding-top: calc(22px + env(safe-area-inset-top));
   display: flex; align-items: center; justify-content: space-between;
   transition: background 0.4s, padding 0.3s;
 }
 .nav.scrolled {
   background: rgba(11,11,12,0.88); backdrop-filter: blur(18px);
-  padding-top:14px; padding-bottom:14px;
+  padding-top: calc(14px + env(safe-area-inset-top));
+  padding-bottom:14px;
   border-bottom: 1px solid var(--w06);
 }
 .nav-wordmark { display:block; flex-shrink:0; }
@@ -162,7 +164,7 @@ body::after {
 .mobile-nav.open { opacity:1; pointer-events:all; }
 .mobile-nav a { font-size:22px; font-weight:700; color:var(--muted-2); transition:color 0.2s; }
 .mobile-nav a:hover { color:var(--lime); }
-.mobile-nav-close { position:absolute; top:22px; right:22px; font-size:24px; color:var(--muted); cursor:pointer; border:none; background:none; }
+.mobile-nav-close { position:absolute; top:calc(22px + env(safe-area-inset-top)); right:22px; font-size:24px; color:var(--muted); cursor:pointer; border:none; background:none; }
 
 /* ── BACK TO TOP ── */
 .back-top {

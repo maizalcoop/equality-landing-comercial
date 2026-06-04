@@ -593,6 +593,15 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
 
   .back-top { bottom:18px; right:18px }
 }
+/* ── SHORT VIEWPORTS (1366×768 y similares) ── */
+@media (max-height: 800px) and (min-width: 601px) {
+  .cases-intro-inner { padding: 36px clamp(28px,4.7vw,64px) 72px; }
+  .stack-cards { margin-top: 50px; }
+  .scard-head { padding: 18px clamp(22px,2.2vw,32px); }
+  .scard-project { font-size: clamp(17px,1.6vw,22px); }
+  .scard-body { padding: 18px clamp(22px,2.2vw,32px); gap: clamp(16px,2vw,28px); }
+  .scard-block-txt { font-size: 12px; line-height: 1.7; }
+}
 </style>
 </head>
 <body>
@@ -754,7 +763,7 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
         </div>
         <div>
           <div class="scard-block-lbl">Solución</div>
-          <div class="scard-block-txt">Equality diseñó e implementó desde cero una plataforma de consolidación financiera que unificó la información de todos los sistemas de la entidad. Se definieron reglas de negocio orientadas al cumplimiento normativo, se automatizó la generación de reportes y se construyó una arquitectura escalable preparada para incorporar nuevas fuentes de datos.</div>
+          <div class="scard-block-txt">Diseñamos e implementamos desde cero una plataforma de consolidación financiera que unificó la información de todos los sistemas de la entidad. Definimos reglas de negocio orientadas al cumplimiento normativo, automatizamos la generación de reportes y construimos una arquitectura escalable preparada para incorporar nuevas fuentes de datos a medida que el negocio crezca.</div>
         </div>
       </div>
     </div>
@@ -781,7 +790,7 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
         </div>
         <div>
           <div class="scard-block-lbl">Solución</div>
-          <div class="scard-block-txt">Equality participó en la planificación y ejecución de la migración, definiendo la estrategia de transición y los ambientes de prueba necesarios para validar cada etapa. El trabajo se organizó para garantizar la continuidad operativa durante todo el proceso. La implementación se completó con un nivel de incidentes mínimo, preservando la estabilidad del negocio.</div>
+          <div class="scard-block-txt">Participamos en la planificación y ejecución de la migración, definiendo la estrategia de transición y los ambientes de prueba necesarios para validar cada etapa. Organizamos el trabajo para garantizar la continuidad operativa durante todo el proceso. La implementación se completó con un nivel de incidentes mínimo, preservando la estabilidad del negocio.</div>
         </div>
       </div>
     </div>
@@ -808,7 +817,7 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
         </div>
         <div>
           <div class="scard-block-lbl">Solución</div>
-          <div class="scard-block-txt">Equality trabajó sobre el core bancario optimizando los procesos batch de préstamos y rediseñando la generación de información regulatoria. Se redujeron los tiempos operativos en los procesos de mayor criticidad y se mejoró la capacidad del equipo para responder a futuras exigencias normativas sin comprometer la operación.</div>
+          <div class="scard-block-txt">Trabajamos sobre el core bancario optimizando los procesos batch de préstamos y rediseñando la generación de información regulatoria. Redujimos los tiempos operativos en los procesos de mayor criticidad y mejoramos la capacidad del equipo para responder a futuras exigencias normativas sin comprometer la operación.</div>
         </div>
       </div>
     </div>
@@ -835,7 +844,7 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
         </div>
         <div>
           <div class="scard-block-lbl">Solución</div>
-          <div class="scard-block-txt">Equality realizó una reingeniería completa de los sistemas de auditoría y seguridad, migrando a una arquitectura escalable y automatizando nuevos procesos manuales de control. Se mejoró la experiencia del equipo interno, reduciendo la exposición operativa y dejando una base sólida para el crecimiento futuro.</div>
+          <div class="scard-block-txt">Realizamos una reingeniería completa de los sistemas de auditoría y seguridad, migrando a una arquitectura escalable y automatizando procesos manuales de control. Mejoramos la experiencia del equipo interno, reduciendo la exposición operativa y dejando una base sólida para el crecimiento futuro.</div>
         </div>
       </div>
     </div>
@@ -1198,7 +1207,7 @@ gsap.from('.divider-200k-phrase',{opacity:0,x:30,duration:0.9,ease:'power3.out',
 /* stacking cards */
 (function(){
   const cards = gsap.utils.toArray('.scard');
-  const STACK_OFFSET = 240;
+  const STACK_OFFSET = window.innerHeight <= 800 ? 165 : 240;
   const GAP = 20;
   const isMobile = window.matchMedia('(max-width:600px)').matches;
 

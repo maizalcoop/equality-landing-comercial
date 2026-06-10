@@ -589,8 +589,9 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
   .cases-intro-inner { padding: 36px 20px 80px }
   .cases-intro { position: static; }
   .sec-title-dark { max-width: none !important; }
-  .stack-cards { margin-top: 0; padding-bottom: 50px; }
-  .scard + .scard { margin-top: 0; }
+  .stack-cards { margin-top: 24px; padding-bottom: 24px; }
+  .scard { position: relative; min-height: 480px; }
+  .scard + .scard { margin-top: 16px; }
 
   .about-pillars { grid-template-columns:1fr }
 
@@ -1241,11 +1242,19 @@ gsap.from('.divider-200k-phrase',{opacity:0,x:30,duration:0.9,ease:'power3.out',
     else if (delta < 0 && current > 0)  { e.preventDefault(); goTo(current - 1); }
   }, { passive: false });
 
-  let touchStartX = 0;
-  outer.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  outer.addEventListener('touchend',   e => {
+  let touchStartX = 0, touchStartY = 0;
+  outer.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  outer.addEventListener('touchmove', e => {
+    const dx = Math.abs(e.touches[0].clientX - touchStartX);
+    const dy = Math.abs(e.touches[0].clientY - touchStartY);
+    if (dx > dy) e.preventDefault();
+  }, { passive: false });
+  outer.addEventListener('touchend', e => {
     const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    if (Math.abs(diff) > 30) goTo(diff > 0 ? current + 1 : current - 1);
   }, { passive: true });
 
   window.addEventListener('resize', () => { current = 0; goTo(0); }, { passive: true });
@@ -1261,16 +1270,9 @@ gsap.from('.divider-200k-phrase',{opacity:0,x:30,duration:0.9,ease:'power3.out',
   const isMobile = window.matchMedia('(max-width:600px)').matches;
 
   if (isMobile) {
-    const NAV = 60, PEEK = 8;
-    const lastTop = NAV + 10; // sc4 ends up 10px below the nav
     cards.forEach((c, i) => {
-      const isLast = i === cards.length - 1;
-      c.style.top    = (isLast ? lastTop : NAV + i * PEEK) + 'px';
+      c.style.top    = 'auto';
       c.style.zIndex = 10 + i;
-      if (!isLast) {
-        const mb = Math.max(0, window.innerHeight - c.offsetHeight - NAV - i * PEEK) + 280;
-        c.style.marginBottom = mb + 'px';
-      }
     });
   } else {
     cards.forEach((c, i) => {

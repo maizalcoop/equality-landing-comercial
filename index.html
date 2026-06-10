@@ -255,8 +255,19 @@ body::after {
   display:flex; flex-direction:column; gap:clamp(16px,2vw,22px);
   flex-shrink:0; width:calc((100vw - 2 * clamp(20px,5vw,64px) - 40px) / 3);
 }
-.ch-dots { display:flex; justify-content:center; align-items:center; gap:8px; padding:0 0 clamp(32px,4vw,52px); }
-.ch-dot { width:7px; height:7px; border-radius:50%; background:rgba(18,18,26,0.18); border:none; cursor:pointer; padding:8px; margin:-8px; flex-shrink:0; transition:background 0.25s, transform 0.25s var(--ease-spring); background-clip:content-box; }
+.ch-dots { display:flex; justify-content:center; align-items:center; gap:10px; padding:0 0 clamp(32px,4vw,52px); }
+.ch-dot {
+  width:7px; height:7px; border-radius:50%;
+  background:rgba(18,18,26,0.22);
+  border:none; cursor:pointer; padding:0; margin:0;
+  flex-shrink:0; position:relative;
+  transition:background 0.25s, transform 0.25s var(--ease-spring);
+  touch-action:manipulation;
+}
+.ch-dot::after {
+  content:''; position:absolute;
+  top:-8px; left:-8px; right:-8px; bottom:-8px;
+}
 .ch-dot.active { background:var(--lime-dim); transform:scale(1.45); }
 @media(min-width:601px) { .ch-dot-mobile { display:none; } }
 .ch-n {
@@ -537,7 +548,18 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
 }
 .about-pillar strong { display:block; font-size:clamp(14px,1.1vw,16px); font-weight:700; color:var(--lime-dim); margin-bottom:4px; }
 
+/* ════════════════════════════════════
+   SAFE TOP FILL  (dark, covers notch area on mobile)
+════════════════════════════════════ */
 
+.safe-top-fill {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: env(safe-area-inset-top);
+  background: var(--dark-4); /* o el color que prefieras que se vea siempre */
+  z-index: 1001; /* por encima del .nav (1000) */
+  pointer-events: none;
+}
 
 /* ════════════════════════════════════
    FOOTER  (dark)
@@ -611,7 +633,7 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
 </style>
 </head>
 <body>
-
+<div class="safe-top-fill"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <button class="back-top" id="backTop" aria-label="Volver al inicio">

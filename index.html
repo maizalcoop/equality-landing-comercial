@@ -511,7 +511,9 @@ body::after {
 /* ════════════════════════════════════
    S6 · ABOUT  (light, collapsible)
 ════════════════════════════════════ */
-.about { background:var(--white); }
+.about { background:var(--lime); transition:background 0.45s var(--ease-out); }
+.about:has(details[open]) { background:var(--white); }
+
 
 .about-trigger {
   display:flex; align-items:center; justify-content:space-between;
@@ -523,7 +525,7 @@ body::after {
 .about-trigger-icon {
   width:28px; height:28px; border-radius:50%; border:1px solid rgba(0,0,0,0.2);
   display:flex; align-items:center; justify-content:center; flex-shrink:0;
-  transition:background 0.2s, border-color 0.2s, transform 0.35s var(--ease-out);
+  transition:background 0.2s, border-color 0.2s;
 }
 .about-trigger-icon svg path { stroke:var(--dark-4); }
 .about-trigger-icon svg { transition:transform 0.35s var(--ease-out); }
@@ -532,6 +534,10 @@ details[open] .about-trigger-icon svg { transform:rotate(45deg); }
 details[open] .about-trigger-icon svg path { stroke:#fff; }
 
 .about-panel-inner {
+  overflow:hidden;
+  padding: 0;
+}
+.about-panel-inner-wrap {
   padding: clamp(32px,4vw,52px) 0;
 }
 
@@ -974,8 +980,15 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
 ════════════════════════════════════ -->
 <section class="about" id="nosotros">
   <div class="container">
-    <div class="about-panel">
+    <details class="about-panel">
+      <summary class="about-trigger">
+        <span class="about-trigger-label">¿Querés saber más sobre Equality?</span>
+        <span class="about-trigger-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+      </summary>
       <div class="about-panel-inner">
+        <div class="about-panel-inner-wrap">
         <div class="about-body">
           <h2 class="sec-title-dark" style="max-width:50%">Somos una <em>cooperativa tecnológica con más de 15 años</em> trabajando en el sector financiero</h2>
           <div class="about-cols">
@@ -993,8 +1006,9 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
             <a href="https://www.equality.coop/" target="_blank" class="btn-dark">Conocenos <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
+        </div><!-- /.about-panel-inner-wrap -->
       </div>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -1013,6 +1027,44 @@ details[open] .about-trigger-icon svg path { stroke:#fff; }
 </footer>
 
 <script>
+/* about collapsible animation */
+(function(){
+  const det = document.querySelector('details.about-panel');
+  if (!det) return;
+  const inner = det.querySelector('.about-panel-inner');
+  const summary = det.querySelector('summary');
+  summary.addEventListener('click', function(e){
+    e.preventDefault();
+    if (det.open) {
+      inner.style.height = inner.scrollHeight + 'px';
+      inner.style.overflow = 'hidden';
+      requestAnimationFrame(() => {
+        inner.style.transition = 'height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease';
+        inner.style.opacity = '0';
+        inner.style.height = '0';
+      });
+      inner.addEventListener('transitionend', function handler(){
+        det.removeAttribute('open');
+        inner.style.cssText = '';
+        inner.removeEventListener('transitionend', handler);
+      });
+    } else {
+      det.setAttribute('open', '');
+      const h = inner.scrollHeight;
+      inner.style.cssText = 'overflow:hidden; height:0; opacity:0;';
+      requestAnimationFrame(() => {
+        inner.style.transition = 'height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease';
+        inner.style.height = h + 'px';
+        inner.style.opacity = '1';
+      });
+      inner.addEventListener('transitionend', function handler(){
+        inner.style.cssText = '';
+        inner.removeEventListener('transitionend', handler);
+      });
+    }
+  });
+})();
+
 gsap.registerPlugin(ScrollTrigger);
 
 /* back to top */
